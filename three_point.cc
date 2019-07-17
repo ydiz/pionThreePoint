@@ -1,5 +1,5 @@
 #include "connected.h"
-#include "loop.h"
+#include "disc.h"
 
 // std::vector<int> gcoor({32, 32, 32, 64});
 std::vector<int> gcoor({24, 24, 24, 64});
@@ -7,20 +7,20 @@ std::vector<int> gcoor({24, 24, 24, 64});
 namespace Grid {
 namespace QCD {
 void read_three_point_connected(LatticePGG &three_point, const std::string &ensemble, int traj) {
-  if(ensemble == "Pion_32ID") {
+  if(ensemble == "32ID") {
     // std::string file = three_point_exact_path(traj); 
     std::string file = three_point_32ID(traj); 
     read_cheng_PGG(three_point, file);
   }
-  else if(ensemble == "Pion_32IDF") {
+  else if(ensemble == "32IDF") {
     std::string file = three_point_path_32IDF(traj);
     read_luchang_PGG(three_point, file); // FIXME: change this after cheng generated his three point functions
   }
-  else if(ensemble == "Pion_48I") {
+  else if(ensemble == "48I") {
     std::string file = three_point_48I(traj);
     read_luchang_PGG(three_point, file); // FIXME: change this after cheng generated his three point functions
   }
-  else if(ensemble == "Pion_24ID") {
+  else if(ensemble == "24ID") {
     std::string file = three_point_24ID(traj);
     read_cheng_PGG(three_point, file);
   }
@@ -68,8 +68,9 @@ int main(int argc, char* argv[])
     conn = tmp * conn;
 
     LatticePGG threePoint(grid);
-    threePoint = conn - disc; // connected and disconnected graph has relative minus sign
+    threePoint = conn - disc; // connected and disconnected graph has a relative minus sign
 
+    writeScidac(threePoint, "/home/yidizhao/cooley/pGG_config/" + ensemble + "/pGG." + std::to_string(traj));
     cout << threePoint << endl;
   }
 
