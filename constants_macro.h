@@ -89,12 +89,23 @@ std::string gauge_transform_path_24D(int traj) {
 
 
 
-std::string point_path_32D(int traj) {
-	return "/home/ljin/application/Public/Muon-GM2-cc/jobs/32D/discon-1/results/prop-hvp ; results=" + std::to_string(traj) + "/huge-data/prop-point-src";
+std::string point_path_32ID(int traj) {
+	std::string path = "/home/ljin/application/Public/Muon-GM2-cc/jobs/32D/discon-1/results/prop-hvp ; results=" + std::to_string(traj) + "/huge-data/prop-point-src";
+  assert(dirExists(path));
+  return path;
+}
+
+
+// FIXME: there is no this directory. prop-point-src is gone; only chvp-point-src is left
+// chvp-point-src cannot be read with double from float
+std::string point_path_24ID(int traj) {
+  std::string path = "/home/ljin/application/Public/Muon-GM2-cc/jobs/24D/discon-1/results/prop-hvp ; results=" + std::to_string(traj) + "/huge-data/prop-point-src";
+  assert(dirExists(path));
+  return path;
 }
 
 std::string gauge_transform_path(int traj) {
-	return "/home/ljin/application/Public/Qlat-CPS-cc/jobs/32D/wall-src/results/32D-0.00107/results=" + std::to_string(traj) + "/huge-data/gauge-transform";
+  return "/home/ljin/application/Public/Qlat-CPS-cc/jobs/32D/wall-src/results/32D-0.00107/results=" + std::to_string(traj) + "/huge-data/gauge-transform";
 }
 
 // std::string three_point_sloppy_path(int traj) {
@@ -124,8 +135,8 @@ std::string three_point_path_32IDF(int traj) {
 
   // std::cout << path << std::endl;
   assert(dirExists(path));
-	
-	return path;
+
+  return path;
 }
 
 std::string three_point_48I(int traj) {
@@ -133,8 +144,8 @@ std::string three_point_48I(int traj) {
   std::string path = "/home/ljin/application/Public/Qlat-CPS-cc/jobs/em-corr/results/48I-0.00078/results=" + std::to_string(traj) + "/contraction-with-point/pion_gg/decay_cheng";
   std::cout << path << std::endl;
   assert(dirExists(path));
-	
-	return path;
+
+  return path;
 }
 
 

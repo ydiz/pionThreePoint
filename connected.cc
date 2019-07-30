@@ -1,4 +1,4 @@
-#include "three_point.h"
+#include "connected.h"
 
 std::vector<int> gcoor({32, 32, 32, 64});
 
